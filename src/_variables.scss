@@ -1,0 +1,55 @@
+$primary: #25b09b;
+$secondary: #9b9b9b;
+$light: #f7f9ff;
+$warning: #ffcf5c;
+$success: #6cc13c;
+$danger: #d92928;
+$dark: #373737;
+
+// $input-btn-focus-width:       .2rem !default;
+// $input-btn-focus-color:       rgba($component-active-bg, .25) !default;
+$input-btn-focus-box-shadow: none;
+$input-btn-font-size: 18px;
+
+@import "./bootstrap/scss/_functions";
+@import "./bootstrap/scss/_variables";
+@import "./bootstrap/scss/_mixins";
+
+$custom-theme-colors: (
+    "dark-blue":#005b85
+);
+
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+
+.pagination {
+    gap: 0.7rem;
+    .page-item {
+        border: none;
+        background-color: transparent;
+        &.active {
+            .page-link {
+                opacity: 1;
+                background-color: $primary;
+                border-color: $primary;
+                color: $white;
+                &:hover {
+                    color: $white;
+                }
+            }
+        }
+
+        .page-link {
+            color: $dark;
+            opacity: 0.5;
+            border: 1px solid transparent;
+            border-radius: 0.4rem;
+            background-color: transparent;
+
+            &:hover {
+                color: $primary;
+                border-color: $primary;
+            }
+        }
+    }
+}
+

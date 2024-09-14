@@ -1,0 +1,18 @@
+<main class="py-4" *ngIf="post$ | async as post">
+    <article class="bg-danger w-100">
+        <img src="{{post.title}}" alt="Post Image of {{post.title}}">
+        <div class="container">
+            
+            <div class="d-flex gap-2 align-items-center" *ngIf="author$ | async as author">
+                <img src="https://thispersondoesnotexist.com" alt="personal image" class="rounded-circle" style="width: 80px; aspect-ratio: 1;">
+                <div class="">
+                    <div>Author: <a routerLink="/users/{{author.id}}">{{author.username}}</a></div>
+                    <a class="text-secondary " href="mailto:{{author.email}}">Email: {{author.email}}</a>
+                </div>
+            </div>
+
+            <h5>{{post.title}}</h5>
+            <p>{{post.body | truncate : 50 }}</p>
+        </div>
+    </article>
+</main>
