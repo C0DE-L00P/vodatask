@@ -1,9 +1,8 @@
 import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-// TODO implement typescript @root import
 import { RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
 import { BASE_API_URL } from '../../../../environments/env';
 import { User } from './../../../../types.d';
 
@@ -22,5 +21,4 @@ export class LayoutComponent {
   ngOnInit(){
     this.users$ = this.http.get<User[]>(BASE_API_URL+'/users');
   }
-  //TODO optional: add trackby function
 }

@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -10,7 +10,7 @@ import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [AsyncPipe, NgIf, TruncatePipe, RouterLink, NgFor],
+  imports: [AsyncPipe, NgIf, TruncatePipe, RouterLink, NgFor, NgClass],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })

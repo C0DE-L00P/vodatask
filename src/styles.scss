@@ -46,9 +46,12 @@
 }
 
 @media screen and (max-width: 765px) {
-.bg-adaptive{
-    background-color: $light;
-}
+    .bg-adaptive{
+        background-color: $light;
+    }
+    .adaptive-overflow-hidden{
+        overflow-x: hidden;
+    }
 }
 .parallex{
   min-height: 340px;

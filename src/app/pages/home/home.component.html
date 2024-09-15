@@ -1,52 +1,89 @@
-<div class="grid mt-4" *ngIf="posts$ | async as posts">
+<div class=" mt-4 d-none d-md-grid grid" *ngIf="posts$ | async as posts">
 
   <div class="column">
     @for (post of posts.slice(0,posts.length*1/3); track post.id;) {
       <a class="position-relative" routerLink="/posts/{{post.id}}">
-        <img src="https://picsum.photos/500/700?random=1-{{$index}}" alt="">
-        <div class="position-absolute start-0 bottom-0 p-3 position-relative text-white bg-danger">
+        <img src="https://picsum.photos/500/700?random=1-{{userId}}-{{$index}}" alt="">
+        <div class="position-absolute start-0 bottom-0 p-3 position-relative text-white">
           <br>
           <br>
           <i class="position-absolute opacity-75 bottom-0 start-0 end-0" style="height: 100%; z-index: 1; filter: blur(4rem), brightness(0.2); background: linear-gradient(to top, #000,transparent);"></i>
           <div style="z-index: 2; color: white; position: relative;">
-            <h6>{{post.title}}</h6>
-            <small>{{post.userId}}</small>
+            <h5>{{post.title}}</h5>
+            <small>{{post.body | truncate : 80}}</small>
+            
           </div>
         </div>
       </a>
     }
   </div>
 
-  <div class="column">
-    @for (post of posts.slice(posts.length*1/3, posts.length*2/3); track post.id;) {
+  <div class="column d-none d-md-grid" style="height: max-content; background-color: white;">
+    @for (post of posts.slice(posts.length*1/3, posts.length*2/3+1); track post.id;) {
       <a class="position-relative" routerLink="/posts/{{post.id}}">
-        <img src="https://picsum.photos/500/700?random=2-{{$index}}" alt="">
+        <img src="https://picsum.photos/500/700?random=2-{{userId}}-{{$index}}" alt="">
         <div class="position-absolute start-0 bottom-0 p-3 position-relative text-white">
           <br>
           <br>
           <i class="position-absolute opacity-75 bottom-0 start-0 end-0" style="height: 100%; z-index: 1; filter: blur(4rem), brightness(0.2); background: linear-gradient(to top, #000,transparent);"></i>
           <div style="z-index: 2; color: white; position: relative;">
-            <h6>{{post.title}}</h6>
-            <small>{{post.userId}}</small>
+            <h5>{{post.title}}</h5>
+            <small>{{post.body | truncate : 80}}</small>
           </div>
         </div>
       </a>
     }
   </div>
-
+  
   <div class="column">
-    @for (post of posts.slice(posts.length*2/3); track post.id;) {
+    @for (post of posts.slice(posts.length*2/3+1); track post.id;) {
       <a class="position-relative" routerLink="/posts/{{post.id}}">
-        <img src="https://picsum.photos/500/700?random=3-{{$index}}" alt="">
+        <img src="https://picsum.photos/500/700?random=3-{{userId}}-{{$index}}" alt="">
         <div class="position-absolute start-0 bottom-0 p-3 position-relative text-white">
           <br>
           <br>
           <i class="position-absolute opacity-75 bottom-0 start-0 end-0" style="height: 100%; z-index: 1; filter: blur(4rem), brightness(0.2); background: linear-gradient(to top, #000,transparent);"></i>
           <div style="z-index: 2; color: white; position: relative;">
-            <h6>{{post.title}}</h6>
-            <small>{{post.userId}}</small>
+            <h5>{{post.title}}</h5>
+            <small>{{post.body | truncate : 80}}</small>
           </div>
         </div>
+      </a>
+    }
+  </div>
+</div>
+
+
+
+<div class="grid mt-4 d-md-none" *ngIf="posts$ | async as posts">
+  <!-- show all images in one column in small screens -->
+  <div class="column" style="height: max-content; background-color: white;">
+    @for (post of posts; track post.id;) {
+      <a class="position-relative">
+        <img src="https://picsum.photos/500/700?random=1-{{userId}}-{{$index}}" alt="">
+      </a>
+    }
+  </div>
+  <div class="column" style="height: max-content; background-color: white;">
+    @for (post of posts; track post.id;) {
+      <a class="position-relative" routerLink="/posts/{{post.id}}">
+        <img src="https://picsum.photos/500/700?random=2-{{userId}}-{{$index}}" alt="">
+        <div class="position-absolute start-0 bottom-0 p-3 position-relative text-white">
+          <br>
+          <br>
+          <i class="position-absolute opacity-75 bottom-0 start-0 end-0" style="height: 100%; z-index: 1; filter: blur(4rem), brightness(0.2); background: linear-gradient(to top, #000,transparent);"></i>
+          <div style="z-index: 2; color: white; position: relative;">
+            <h5>{{post.title}}</h5>
+            <small>{{post.body | truncate : 80}}</small>
+          </div>
+        </div>
+      </a>
+    }
+  </div>
+  <div class="column" style="height: max-content; background-color: white;">
+    @for (post of posts; track post.id;) {
+      <a class="position-relative" >
+        <img src="https://picsum.photos/500/700?random=3-{{userId}}-{{$index}}" alt="">
       </a>
     }
   </div>
