@@ -1,10 +1,10 @@
 import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Observable, shareReplay, switchMap } from 'rxjs';
 import { BASE_API_URL } from '../../../environments/env';
 import { Comment, Post, User } from '../../../types';
+import { CallService } from '../../core/services/call.service';
 import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
 
 @Component({
@@ -15,7 +15,7 @@ import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
   styleUrl: './post.component.scss'
 })
 export class PostComponent {
-  constructor(private route:ActivatedRoute, private http:HttpClient){}
+  constructor(private route:ActivatedRoute, private call:CallService){}
   
   post$!:Observable<Post>;
   author$!:Observable<User>;
@@ -27,15 +27,15 @@ export class PostComponent {
   ngOnInit(){
     const {id} = this.route.snapshot.params;
     
-    this.post$ = this.http.get<Post>(BASE_API_URL+'/posts/'+id).pipe(shareReplay(1));
+    this.post$ = this.call.get(BASE_API_URL+'/posts/'+id).pipe(shareReplay(1));
 
     this.author$ = this.post$.pipe(
-      switchMap(post => this.http.get<User>(`${BASE_API_URL}/users/${post.userId}`)),
+      switchMap(post => this.call.get(`${BASE_API_URL}/users/${post.userId}`)),
       shareReplay(1)
     );
 
     this.comments$ = this.post$.pipe(
-      switchMap(post => this.http.get<Comment[]>(`${BASE_API_URL}/comments?postId=${post.id}`)),
+      switchMap(post => this.call.get(`${BASE_API_URL}/comments?postId=${post.id}`)),
       shareReplay(1)
     );
   }

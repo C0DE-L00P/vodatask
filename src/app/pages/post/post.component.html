@@ -1,6 +1,7 @@
 <main class="" *ngIf="post$ | async as post">
   <article class="w-100 d-flex flex-column h-100">
-    <div class="w-100 parallex" style="background-image: url('https://random.imagecdn.app/1920/1080');"></div>
+    <div class="w-100 parallex" style="background-image: url('https://picsum.photos/1920/1080?random={{post.id}}');"></div>
+    <!-- https://random.imagecdn.app/ -->
     <!-- <img src="https://random.imagecdn.app/1920/1080" alt="Post Image of {{post.title}}" class="w-100" height="280" style="object-fit: cover;"> -->
     <section class="container flex-grow-1 py-3">
 
