@@ -4,13 +4,14 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BASE_API_URL } from '../../../environments/env';
 import { Post } from '../../../types';
+import { PostCardComponent } from '../../shared/components/post-card/post-card.component';
 import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
 import { CallService } from './../../core/services/call.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgFor, AsyncPipe, RouterLink, NgIf, TruncatePipe],
+  imports: [NgFor, AsyncPipe, RouterLink, NgIf, TruncatePipe, PostCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -26,12 +27,6 @@ export class HomeComponent {
       this.userId = params['userId'];
       this.posts$ = this.call.get(BASE_API_URL+'/posts?_start=0&_limit=10'+ (this.userId? '&userId='+this.userId:'') );
     });
-
-    // this.posts$ = this.http.get<Post[]>(BASE_API_URL+'/posts?_start=0&_limit=10'+ (userId? '&userId='+userId:'') );
-  }
-
-  getUniqueImageUrl(index: number): string {
-    return `https://random.imagecdn.app/480/360?_=${index}`;
   }
 
   ngOnDestroy(){

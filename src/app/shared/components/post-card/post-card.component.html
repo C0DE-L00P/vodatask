@@ -1,0 +1,12 @@
+<a class="position-relative d-block" routerLink="/posts/{{post.id}}">
+    <img src="https://picsum.photos/500/700?random={{post.id}}" alt="">
+    <div class="position-absolute start-0 bottom-0 p-3 position-relative text-white">
+      <br>
+      <br>
+      <i class="position-absolute opacity-75 bottom-0 start-0 end-0" style="height: 100%; z-index: 1; filter: blur(4rem), brightness(0.2); background: linear-gradient(to top, #000,transparent);"></i>
+      <div style="z-index: 2; color: white; position: relative;">
+        <h5>{{post.title}}</h5>
+        <small>{{post.body | truncate : 80}}</small>
+      </div>
+    </div>
+</a>
