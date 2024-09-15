@@ -1,18 +1,34 @@
-<main class="py-4" *ngIf="post$ | async as post">
-    <article class="bg-danger w-100">
-        <img src="{{post.title}}" alt="Post Image of {{post.title}}">
-        <div class="container">
-            
-            <div class="d-flex gap-2 align-items-center" *ngIf="author$ | async as author">
-                <img src="https://thispersondoesnotexist.com" alt="personal image" class="rounded-circle" style="width: 80px; aspect-ratio: 1;">
-                <div class="">
-                    <div>Author: <a routerLink="/users/{{author.id}}">{{author.username}}</a></div>
-                    <a class="text-secondary " href="mailto:{{author.email}}">Email: {{author.email}}</a>
-                </div>
-            </div>
+<main class="" *ngIf="post$ | async as post">
+  <article class="w-100 d-flex flex-column h-100">
+    <img src="https://random.imagecdn.app/1920/1080" alt="Post Image of {{post.title}}" class="w-100" height="280" style="object-fit: cover;">
+    <section class="container flex-grow-1 py-3">
 
-            <h5>{{post.title}}</h5>
-            <p>{{post.body | truncate : 50 }}</p>
+      <div class="d-flex gap-2 align-items-center my-4" *ngIf="author$ | async as author">
+        <img src="https://thispersondoesnotexist.com" alt="personal image" class="rounded-circle" style="width: 80px; aspect-ratio: 1;">
+        <div class="">
+          <div>Author: <a routerLink="/users/{{author.id}}">{{author.username}}</a></div>
+          <a class="text-secondary " href="mailto:{{author.email}}">{{author.email}}</a>
         </div>
-    </article>
+      </div>
+
+      <h5>{{post.title}}</h5>
+      <p [innerHTML]="post.body | truncate : 80"></p>
+
+      <section class="comments-section ">
+        <button (click)="ToggleComments()" class="btn btn-primary mb-4">
+          {{isCommentShown()? "Hide":"Show"}} Comments
+        </button>
+
+        @if (isCommentShown()) {
+        <div class="comments-list d-flex flex-column gap-3">
+          <div *ngFor="let comment of comments$ | async;" class="bg-light rounded-3 p-3">
+            <h6>{{comment.name}}</h6>
+            <small class="text-secondary">{{comment.email}}</small>
+            <p>{{comment.body}}</p>
+          </div>
+        </div>
+        }
+      </section>
+    </section>
+  </article>
 </main>
