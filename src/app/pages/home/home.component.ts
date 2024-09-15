@@ -1,6 +1,6 @@
-import { AsyncPipe, NgFor } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BASE_API_URL } from '../../../environments/env';
@@ -9,19 +9,19 @@ import { Post } from '../../../types';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgFor, AsyncPipe, RouterLink],
+  imports: [NgFor, AsyncPipe, RouterLink, NgIf],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  constructor(private route:ActivatedRoute, private http:HttpClient){
-    
-  }
+  constructor(private route:ActivatedRoute, private http:HttpClient){}
 
   posts$!: Observable<Post[]>;
 
   ngOnInit(){
-    this.posts$ = this.http.get<Post[]>(BASE_API_URL+'/posts?_start=0&_limit=5');
+    let userId = this.route.snapshot.queryParamMap.get('userId');
+    this.posts$ = this.http.get<Post[]>(BASE_API_URL+'/posts?_start=0&_limit=5'+ (userId? '&userId='+userId:'') );
+    
   }
 
   getUniqueImageUrl(index: number): string {

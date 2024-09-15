@@ -1,0 +1,86 @@
+@import "https://unpkg.com/normalize.css";
+
+// :root {
+// 	--gap: 1rem;
+// 	--card-width: ;
+// 	--card-aspect-ratio: 5 / 7;
+// 	--card-height: ;
+// }
+
+// $grid-gap: ;
+// $card-width: ;
+// $card-aspect-ratio: ;
+// $card-height: ;
+
+// body {
+// 	display: grid;
+// 	place-items: center;
+// 	font-family:  'Google Sans', sans-serif, system-ui;
+// 	justify-content: center;
+// 	overflow-x: hidden;
+// 	min-height: 100vh;
+// }
+
+.grid {
+    margin-top: 32px;
+	display: grid;
+	justify-content: center;
+	grid-template-columns: repeat(3, clamp(340px, 20vw, 100vw));
+	gap: 1rem;
+  /* overflow: hidden shouldn't break this? */
+  overflow: hidden;
+}
+
+.grid-wrapper {
+	 overflow: hidden; 
+}
+
+.column {
+	display: grid;
+	gap: 1rem;
+  align-content: start;
+}
+
+.column:not(:nth-of-type(2)) {
+	-webkit-animation: scale 1s linear both;
+	        animation: scale 1s linear both;
+	animation-timeline: scroll(root);
+}
+
+/* The distance is the number of cards minus 100vh */
+.column:is(:nth-of-type(3),:nth-of-type(1)) {
+	--origin: calc(1rem * -1);
+	--destination: calc(calc(clamp(340px, 20vw, 100vw) * (7 / 5)) * 1.5 + 1rem);
+}
+// .column:is(:nth-of-type(1), :nth-of-type(5)) {
+// 	--origin: calc(1rem * -2);
+// 	--destination: calc(calc(clamp(340px, 20vw, 100vw) * (7 / 5)) * 3.4 + 1rem);
+// }
+
+@-webkit-keyframes scale {
+	0% {
+		transform: translateY(var(--origin, 0%));
+	}
+	100% {
+		transform: translateY(var(--destination, -50%));
+	}
+}
+
+@keyframes scale {
+	0% {
+		transform: translateY(var(--origin, 0%));
+	}
+	100% {
+		transform: translateY(var(--destination, -50%));
+	}
+}
+
+img {
+	max-width: 100%;
+	border: 0;
+	padding: 0;
+	max-height: 100%;
+	width: 100%;
+	aspect-ratio: 5 / 7;
+	background: hsl(0 0% 80%);
+}

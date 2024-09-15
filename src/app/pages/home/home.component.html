@@ -1,13 +1,53 @@
-<main class="container mt-4" style="z-index: 1">
-    <section class="posts" style="columns: 360px;">
-        
-    <article class="card mb-3" style="width: 18rem;" *ngFor="let post of posts$ | async ; index as i" routerLink="/posts/{{post.id}}">
-        <img [src]="getUniqueImageUrl(i)" class="card-img-top" alt="post image">
-        <div class="card-body">
-          <h5 class="card-title">{{post.title}}</h5>
-          <p class="card-text">{{post.body}}</p>
+<div class="grid mt-4" *ngIf="posts$ | async as posts">
+
+  <div class="column">
+    @for (post of posts.slice(0,posts.length*1/3); track post.id;) {
+      <a class="position-relative" routerLink="/posts/{{post.id}}">
+        <img src="https://picsum.photos/500/700?random=1-{{$index}}" alt="">
+        <div class="position-absolute start-0 bottom-0 p-3 position-relative text-white bg-danger">
+          <br>
+          <br>
+          <i class="position-absolute opacity-75 bottom-0 start-0 end-0" style="height: 100%; z-index: 1; filter: blur(4rem), brightness(0.2); background: linear-gradient(to top, #000,transparent);"></i>
+          <div style="z-index: 2; color: white; position: relative;">
+            <h6>{{post.title}}</h6>
+            <small>{{post.userId}}</small>
+          </div>
         </div>
-      </article>
-      
-    </section>
-</main>
+      </a>
+    }
+  </div>
+
+  <div class="column">
+    @for (post of posts.slice(posts.length*1/3, posts.length*2/3); track post.id;) {
+      <a class="position-relative" routerLink="/posts/{{post.id}}">
+        <img src="https://picsum.photos/500/700?random=2-{{$index}}" alt="">
+        <div class="position-absolute start-0 bottom-0 p-3 position-relative text-white">
+          <br>
+          <br>
+          <i class="position-absolute opacity-75 bottom-0 start-0 end-0" style="height: 100%; z-index: 1; filter: blur(4rem), brightness(0.2); background: linear-gradient(to top, #000,transparent);"></i>
+          <div style="z-index: 2; color: white; position: relative;">
+            <h6>{{post.title}}</h6>
+            <small>{{post.userId}}</small>
+          </div>
+        </div>
+      </a>
+    }
+  </div>
+
+  <div class="column">
+    @for (post of posts.slice(posts.length*2/3); track post.id;) {
+      <a class="position-relative" routerLink="/posts/{{post.id}}">
+        <img src="https://picsum.photos/500/700?random=3-{{$index}}" alt="">
+        <div class="position-absolute start-0 bottom-0 p-3 position-relative text-white">
+          <br>
+          <br>
+          <i class="position-absolute opacity-75 bottom-0 start-0 end-0" style="height: 100%; z-index: 1; filter: blur(4rem), brightness(0.2); background: linear-gradient(to top, #000,transparent);"></i>
+          <div style="z-index: 2; color: white; position: relative;">
+            <h6>{{post.title}}</h6>
+            <small>{{post.userId}}</small>
+          </div>
+        </div>
+      </a>
+    }
+  </div>
+</div>
