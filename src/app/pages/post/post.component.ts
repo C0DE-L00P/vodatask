@@ -21,7 +21,7 @@ export class PostComponent {
   author$!:Observable<User>;
   comments$!:Observable<Comment[]>;
   
-  isCommentShown = signal(true);
+  isCommentShown = signal(false);
   // private destroy$ = new Subject<void>();
   
   ngOnInit(){

@@ -1,1 +1,13 @@
-<p>home works!</p>
+<main class="container mt-4" style="z-index: 1">
+    <section class="posts" style="columns: 360px;">
+        
+    <article class="card mb-3" style="width: 18rem;" *ngFor="let post of posts$ | async ; index as i" routerLink="/posts/{{post.id}}">
+        <img [src]="getUniqueImageUrl(i)" class="card-img-top" alt="post image">
+        <div class="card-body">
+          <h5 class="card-title">{{post.title}}</h5>
+          <p class="card-text">{{post.body}}</p>
+        </div>
+      </article>
+      
+    </section>
+</main>

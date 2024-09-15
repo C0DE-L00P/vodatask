@@ -1,6 +1,7 @@
-$primary: #25b09b;
+$primary: #f55f0c;
 $secondary: #9b9b9b;
-$light: #f7f9ff;
+$light: #f8f1ec;
+// $light: #f7f9ff;
 $warning: #ffcf5c;
 $success: #6cc13c;
 $danger: #d92928;
@@ -15,11 +16,11 @@ $input-btn-font-size: 18px;
 @import "./bootstrap/scss/_variables";
 @import "./bootstrap/scss/_mixins";
 
-$custom-theme-colors: (
-    "dark-blue":#005b85
-);
+// $custom-theme-colors: (
+//     "dark-blue":#005b85
+// );
 
-$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+// $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 
 .pagination {
     gap: 0.7rem;
